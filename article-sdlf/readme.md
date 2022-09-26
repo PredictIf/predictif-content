@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this article we will discuss about AWS Serverless Data Lake Framework [link here], features, pitfalls and how to get started and install it really fast. SDLF, according to the readme on GitHub is an AWS Professional Services open source initiative. Citing the source:
+In this article we will discuss about AWS Serverless Data Lake Framework, features, pitfalls and how to get started and install it really fast. SDLF, according to the readme on GitHub is an AWS Professional Services open source initiative. Citing the source:
 
 "_The Serverless Data Lake Framework (SDLF) is a collection of reusable artifacts aimed at accelerating the delivery of enterprise data lakes on AWS, shortening the deployment time to production from several months to a few weeks. It can be used by AWS teams, partners and customers to implement the foundational structure of a data lake following best practices._"
 
