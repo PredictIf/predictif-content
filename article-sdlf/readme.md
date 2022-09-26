@@ -1,4 +1,4 @@
-# Restarting With AWS Serverless Data Lake Framework
+# Get Started With AWS Serverless Data Lake Framework
 
 ## Introduction
 
@@ -17,7 +17,10 @@ In terms of documentation, we found plenty to get us started. If you are not fam
 However, here is a brief of how it works in our own words: SDLF comprises in a set of repositories that deploys a CICD ready (with CodeCommit, CodeBuild, CodePipeline and all) data lake pipeline scafolding and examples. Pipelines can contain multiple stages (default 2). The deployment considers multiple environments: shared environment, dev, test, prod environments. For a quick evaluation and get-started, shared and dev environments can be deployed on the same account.
 
 ![sdlf architecture](./pictures/2022-09-25_13-09-05-architecture.png)
-[image copied from <https://sdlf.readthedocs.io/en/latest/architecture.html>]
+
+<!-- <center>[image copied from https://sdlf.readthedocs.io/en/latest/architecture.html]</center> -->
+
+[image copied from [SDLF site](https://sdlf.readthedocs.io/en/latest/architecture.html)]
 
 The greatest advantage we saw in using SDLF was that it contains all things that we need in a data-lake other than the actual transformations. Here is the list of these things, or in other words, things we dont have to care about if using SDLF:
 
@@ -31,7 +34,7 @@ The greatest advantage we saw in using SDLF was that it contains all things that
 
 One of the first things we created around SDLF, is an ansible set of scripts for deploying it in one shot, and then completly destroing it in another shot. This would be the first step in having an automated testing procedure.
 
-We published these changes as a new branch as part of forked SDLF repository on our GitHub account. This is available here:
+We published these changes as a new branch called `master-predictif`, as part of forked SDLF repository on our GitHub account. This is available here:
 
 <https://github.com/PredictIf/aws-serverless-data-lake-framework>
 
@@ -39,24 +42,26 @@ The install script deploys SDLF in a AWS account that plays SHARED and DEV envir
 
 ### Requirements
 
-- A linux type of development environment where you will clone our branch. Cloud9 will work fine. I will not work on Windows due to limitations of the max number of characters a file path can have.
+- A linux type of development environment where you will clone our branch. Cloud9 will work fine. It will not work on Windows due to limitations of the max number of characters a file path can have.
 - Git
 - Ansible
 - Pyhon 3.8+
 - Library: git-remote-codecommit
 - AWS credentials profile pointing to an account to be used as SHARED and DEV environments for SDLF. It's important to mention that the region must be also configured as part of the profile. Another important detail is that there should not be other copy of SDLF installed or attempted installed in another region or same region. This is caused by the name colision in global names of IAM roles and policies. However, if you really want to install it where SDLF is installed on another region, there is a work around that I will mention in another post. Or just post a note on the article.
-- Your user, or the entity that will execute the ansible scripts, should be added as admin in Lake Formation. (For details, see step 5 in the [workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/501cb14c-91b3-455c-a2a9-d0a21ce68114/en-US/10-deployment/100-setup)).
+- Your user, or the entity that will execute the ansible scripts, should be added as admin in Lake Formation. (For details, see step 5 in the [workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/501cb14c-91b3-455c-a2a9-d0a21ce68114/en-US/10-deployment/100-setup)). This can be added to the deployment script in the next version. We need to consider existing data-lake admins.
 
 ### 1. Clone the repo
 
+The new branch `master-predictif` is set as default branch in this repo, we added the option `-b`, in order to be more explicative.
+
 ```bash
 #!/bin/bash
-git clone https://github.com/PredictIf/aws-serverless-data-lake-framework.git
+git clone https://github.com/PredictIf/aws-serverless-data-lake-framework.git -b master-predictif
 ```
 
-### 2. Edit specific variables
+### 2. Edit environment specific variables
 
-First, you would need to edit config file correctly, before launching the install. With your editor of choice, open and edit following files:
+First, you would need to edit config files correctly, before launching the install. With your editor of choice, open and edit following files:
 
 - `./ansible/environments/vars_common.yaml`
 - `./ansible/environments/dev/vars-app.yaml`
